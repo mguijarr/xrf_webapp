@@ -1,0 +1,680 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>
+   Armando's app
+  </title>
+  <script language="JavaScript" type="text/javascript" src="Armando%27s%20app_files/jquery-2.js">
+  </script>
+  <script language="JavaScript" type="text/javascript" src="Armando%27s%20app_files/bootstrap.js">
+  </script>
+  <link rel="stylesheet" href="Armando%27s%20app_files/bootstrap.css">
+  <script language="JavaScript" type="text/javascript" src="Armando%27s%20app_files/app.js">
+  </script>
+ <!-- base href="file:///home/matias/work/armando/app.html#" --></head>
+ <body>
+  <div class="container" style="max-width: 970px;">
+   <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+     <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+       Multilayer Fluorescence App
+      </a>
+     </div>
+    </div>
+   </nav>
+   <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur 
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+ mollit anim id est laborum.
+   </p>
+   <center>
+    <img src="Armando%27s%20app_files/matrix.png">
+   </center>
+   <form class="form-horizontal">
+    <fieldset>
+     <legend>
+      <div style="display: inline-block;">
+       <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+       </span>
+      </div>
+      Geometry
+     </legend>
+     <div class="form-group">
+      <label class="col-md-4 control-label" for="incoming_angle">
+       Incoming Angle
+      </label>
+      <div class="col-md-5">
+       <div class="input-group">
+        <input id="incoming_angle" name="incoming_angle" class="form-control" placeholder="45" required="true" type="text">
+        <span class="input-group-addon">
+         deg.
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="form-group">
+      <label class="col-md-4 control-label" for="outgoing_angle">
+       Outgoing Angle
+      </label>
+      <div class="col-md-5">
+       <div class="input-group">
+        <input id="outgoing_angle" name="outgoing_angle" class="form-control" placeholder="45" required="true" type="text">
+        <span class="input-group-addon">
+         deg.
+        </span>
+       </div>
+      </div>
+     </div>
+    </fieldset>
+   </form>
+   <legend>
+    <div style="display: inline-block;">
+     <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+     </span>
+    </div>
+    Materials
+   </legend>
+   <div class="btn-group btn-md">
+    <a href="#" class="btn btn-default btn-md" onclick="add_material(event)">
+     <span class="glyphicon glyphicon-plus" aria-hidden="true">
+     </span>
+     New material
+    </a>
+   </div>
+   <div class="panel-group" id="materials" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+     <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+       <a class="collapsed" data-toggle="collapse" data-parent="#materials" href="#air" aria-expanded="false" aria-controls="air">
+        Air
+       </a>
+      </h4>
+     </div>
+     <div style="height: 0px;" aria-expanded="false" id="air" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+       <table class="table table-bordered table-condensed">
+        <thead>
+         <tr>
+          <th>
+           Compound
+          </th>
+          <th>
+           Mass fraction
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           <input class="form-control" type="text">
+          </td>
+          <td>
+           <input class="form-control" type="text">
+          </td>
+          <td>
+           <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">
+            </span>
+            Add
+           </button>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <form class="form-horizontal">
+        <fieldset>
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="default_density">
+           Default Density
+          </label>
+          <div class="col-md-5">
+           <div class="input-group">
+            <input id="default_density" name="default_density" class="form-control" placeholder="1" required="true" type="text">
+            <span class="input-group-addon">
+             g/cm
+             <sup>
+              3
+             </sup>
+            </span>
+           </div>
+          </div>
+         </div>
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="default_thickness">
+           Default Thickness
+          </label>
+          <div class="col-md-5">
+           <div class="input-group">
+            <input id="default_thickness" name="default_thickness" class="form-control" placeholder="1" required="true" type="text">
+            <span class="input-group-addon">
+             cm
+            </span>
+           </div>
+          </div>
+         </div>
+        </fieldset>
+       </form>
+      </div>
+     </div>
+    </div>
+   <div class="panel panel-default">
+     <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+       <a class="collapsed" data-toggle="collapse" data-parent="#materials" href="#air" aria-expanded="false" aria-controls="air">
+        Air
+       </a>
+      </h4>
+     </div>
+     <div id="air" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+       <table class="table table-bordered table-condensed">
+        <thead>
+         <tr>
+          <th>
+           Compound
+          </th>
+          <th>
+           Mass fraction
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           <input class="form-control" type="text">
+          </td>
+          <td>
+           <input class="form-control" type="text">
+          </td>
+          <td>
+           <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">
+            </span>
+            Add
+           </button>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <form class="form-horizontal">
+        <fieldset>
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="default_density">
+           Default Density
+          </label>
+          <div class="col-md-5">
+           <div class="input-group">
+            <input id="default_density" name="default_density" class="form-control" placeholder="1" required="true" type="text">
+            <span class="input-group-addon">
+             g/cm
+             <sup>
+              3
+             </sup>
+            </span>
+           </div>
+          </div>
+         </div>
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="default_thickness">
+           Default Thickness
+          </label>
+          <div class="col-md-5">
+           <div class="input-group">
+            <input id="default_thickness" name="default_thickness" class="form-control" placeholder="1" required="true" type="text">
+            <span class="input-group-addon">
+             cm
+            </span>
+           </div>
+          </div>
+         </div>
+        </fieldset>
+       </form>
+      </div>
+     </div>
+    </div><div class="panel panel-default">
+     <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+       <a class="collapsed" data-toggle="collapse" data-parent="#materials" href="#air" aria-expanded="false" aria-controls="air">
+        Air
+       </a>
+      </h4>
+     </div>
+     <div id="air" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+       <table class="table table-bordered table-condensed">
+        <thead>
+         <tr>
+          <th>
+           Compound
+          </th>
+          <th>
+           Mass fraction
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           <input class="form-control" type="text">
+          </td>
+          <td>
+           <input class="form-control" type="text">
+          </td>
+          <td>
+           <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">
+            </span>
+            Add
+           </button>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <form class="form-horizontal">
+        <fieldset>
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="default_density">
+           Default Density
+          </label>
+          <div class="col-md-5">
+           <div class="input-group">
+            <input id="default_density" name="default_density" class="form-control" placeholder="1" required="true" type="text">
+            <span class="input-group-addon">
+             g/cm
+             <sup>
+              3
+             </sup>
+            </span>
+           </div>
+          </div>
+         </div>
+         <div class="form-group">
+          <label class="col-md-4 control-label" for="default_thickness">
+           Default Thickness
+          </label>
+          <div class="col-md-5">
+           <div class="input-group">
+            <input id="default_thickness" name="default_thickness" class="form-control" placeholder="1" required="true" type="text">
+            <span class="input-group-addon">
+             cm
+            </span>
+           </div>
+          </div>
+         </div>
+        </fieldset>
+       </form>
+      </div>
+     </div>
+    </div></div>
+   <br>
+   <legend>
+    <div style="display: inline-block;">
+     <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+     </span>
+    </div>
+    Matrix Multilayer definition
+   </legend>
+   <table class="table table-bordered table-condensed">
+    <thead>
+     <tr>
+      <th>
+       Name
+      </th>
+      <th>
+       Material
+      </th>
+      <th>
+       Density (g/cm
+       <sup>
+        3
+       </sup>
+       )
+      </th>
+      <th>
+       Thickness (cm)
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         Cr
+         <span class="caret">
+         </span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+         <li>
+          <a href="#" onclick="material_selected(event)">
+           Cr
+          </a>
+         </li>
+         <li>
+          <a href="#" onclick="material_selected(event)">
+           Fe
+          </a>
+         </li>
+         <li>
+          <a href="#" onclick="material_selected(event)">
+           Ni
+          </a>
+         </li>
+        </ul>
+       </div>
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        Add
+       </button>
+      </td>
+     </tr>
+    <tr>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         Cr
+         <span class="caret">
+         </span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+         <li>
+          <a href="#" onclick="material_selected(event)">
+           Cr
+          </a>
+         </li>
+         <li>
+          <a href="#" onclick="material_selected(event)">
+           Fe
+          </a>
+         </li>
+         <li>
+          <a href="#" onclick="material_selected(event)">
+           Ni
+          </a>
+         </li>
+        </ul>
+       </div>
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        Add
+       </button>
+      </td>
+     </tr></tbody>
+   </table>
+   <legend>
+    <div style="display: inline-block;">
+     <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+     </span>
+    </div>
+    Attenuators
+   </legend>
+   <table class="table table-bordered table-condensed">
+    <thead>
+     <tr>
+      <th>
+       Type
+      </th>
+      <th>
+       Material
+      </th>
+      <th>
+       Density (g/cm
+       <sup>
+        3
+       </sup>
+       )
+      </th>
+      <th>
+       Thickness (cm)
+      </th>
+      <th>
+       Funny factor
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         Filter
+         <span class="caret">
+         </span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+         <li>
+          <a href="#">
+           Filter
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           Beam Filter
+          </a>
+         </li>
+        </ul>
+       </div>
+      </td>
+      <td>
+       <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         Cr
+         <span class="caret">
+         </span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+         <li>
+          <a href="#">
+           Cr
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           Fe
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           Ni
+          </a>
+         </li>
+        </ul>
+       </div>
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        Add
+       </button>
+      </td>
+     </tr>
+    <tr>
+      <td>
+       <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         Filter
+         <span class="caret">
+         </span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+         <li>
+          <a href="#">
+           Filter
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           Beam Filter
+          </a>
+         </li>
+        </ul>
+       </div>
+      </td>
+      <td>
+       <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         Cr
+         <span class="caret">
+         </span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+         <li>
+          <a href="#">
+           Cr
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           Fe
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           Ni
+          </a>
+         </li>
+        </ul>
+       </div>
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        Add
+       </button>
+      </td>
+     </tr></tbody>
+   </table>
+   <legend>
+    <div style="display: inline-block;">
+     <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+     </span>
+    </div>
+    Detector
+   </legend>
+   <table class="table table-bordered table-condensed">
+    <thead>
+     <tr>
+      <th>
+       Material
+      </th>
+      <th>
+       Density (g/cm
+       <sup>
+        3
+       </sup>
+       )
+      </th>
+      <th>
+       Thickness (cm)
+      </th>
+      <th>
+       Detector area (cm
+       <sup>
+        2
+       </sup>
+       )
+      </th>
+      <th>
+       Distance (cm)
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         Cr
+         <span class="caret">
+         </span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+         <li>
+          <a href="#">
+           Cr
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           Fe
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           Ni
+          </a>
+         </li>
+        </ul>
+       </div>
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+      <td>
+       <input class="form-control" type="text">
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <button class="btn btn-primary btn-lg">
+    Submit
+   </button>
+  </div>
+ 
+
+
+</body></html>
