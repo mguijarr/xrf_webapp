@@ -133,7 +133,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
           </label>
           <div class="col-md-5">
            <div class="input-group">
-            <input id="default_density" name="default_density" class="form-control" placeholder="1" required="true" type="text" />
+            <input id="default_density" name="default_density" class="form-control" required="true" type="text" />
             <span class="input-group-addon">
              g/cm
              <sup>
@@ -149,157 +149,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
           </label>
           <div class="col-md-5">
            <div class="input-group">
-            <input id="default_thickness" name="default_thickness" class="form-control" placeholder="1" required="true" type="text" />
-            <span class="input-group-addon">
-             cm
-            </span>
-           </div>
-          </div>
-         </div>
-        </fieldset>
-       </form>
-      </div>
-     </div>
-    </div>
-    <div class="panel panel-default">
-     <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-       <a class="collapsed" data-toggle="collapse" data-parent="#materials" href="#air" aria-expanded="false" aria-controls="air">
-        Air
-       </a>
-      </h4>
-     </div>
-     <div id="air" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-       <table class="table table-bordered table-condensed">
-        <thead>
-         <tr>
-          <th>
-           Compound
-          </th>
-          <th>
-           Mass fraction
-          </th>
-         </tr>
-        </thead>
-        <tbody>
-         <tr>
-          <td>
-           <input class="form-control" type="text" />
-          </td>
-          <td>
-           <input class="form-control" type="text" />
-          </td>
-          <td>
-           <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">
-            </span>
-            Add
-           </button>
-          </td>
-         </tr>
-        </tbody>
-       </table>
-       <form class="form-horizontal">
-        <fieldset>
-         <div class="form-group">
-          <label class="col-md-4 control-label" for="default_density">
-           Default Density
-          </label>
-          <div class="col-md-5">
-           <div class="input-group">
-            <input id="default_density" name="default_density" class="form-control" placeholder="1" required="true" type="text" />
-            <span class="input-group-addon">
-             g/cm
-             <sup>
-              3
-             </sup>
-            </span>
-           </div>
-          </div>
-         </div>
-         <div class="form-group">
-          <label class="col-md-4 control-label" for="default_thickness">
-           Default Thickness
-          </label>
-          <div class="col-md-5">
-           <div class="input-group">
-            <input id="default_thickness" name="default_thickness" class="form-control" placeholder="1" required="true" type="text" />
-            <span class="input-group-addon">
-             cm
-            </span>
-           </div>
-          </div>
-         </div>
-        </fieldset>
-       </form>
-      </div>
-     </div>
-    </div>
-    <div class="panel panel-default">
-     <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-       <a class="collapsed" data-toggle="collapse" data-parent="#materials" href="#air" aria-expanded="false" aria-controls="air">
-        Air
-       </a>
-      </h4>
-     </div>
-     <div id="air" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-       <table class="table table-bordered table-condensed">
-        <thead>
-         <tr>
-          <th>
-           Compound
-          </th>
-          <th>
-           Mass fraction
-          </th>
-         </tr>
-        </thead>
-        <tbody>
-         <tr>
-          <td>
-           <input class="form-control" type="text" />
-          </td>
-          <td>
-           <input class="form-control" type="text" />
-          </td>
-          <td>
-           <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">
-            </span>
-            Add
-           </button>
-          </td>
-         </tr>
-        </tbody>
-       </table>
-       <form class="form-horizontal">
-        <fieldset>
-         <div class="form-group">
-          <label class="col-md-4 control-label" for="default_density">
-           Default Density
-          </label>
-          <div class="col-md-5">
-           <div class="input-group">
-            <input id="default_density" name="default_density" class="form-control" placeholder="1" required="true" type="text" />
-            <span class="input-group-addon">
-             g/cm
-             <sup>
-              3
-             </sup>
-            </span>
-           </div>
-          </div>
-         </div>
-         <div class="form-group">
-          <label class="col-md-4 control-label" for="default_thickness">
-           Default Thickness
-          </label>
-          <div class="col-md-5">
-           <div class="input-group">
-            <input id="default_thickness" name="default_thickness" class="form-control" placeholder="1" required="true" type="text" />
+            <input id="default_thickness" name="default_thickness" class="form-control" required="true" type="text" />
             <span class="input-group-addon">
              cm
             </span>
@@ -312,7 +162,6 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
      </div>
     </div>
    </div>
-   <br />
    <legend>
     <div style="display: inline-block;">
      <span class="glyphicon glyphicon-pencil" aria-hidden="true">
@@ -320,7 +169,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
     </div>
     Matrix Multilayer definition
    </legend>
-   <table class="table table-bordered table-condensed">
+   <table class="table table-bordered table-condensed" id="multilayer_table">
     <thead>
      <tr>
       <th>
@@ -347,72 +196,13 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
        <input class="form-control" type="text" />
       </td>
       <td>
-       <div class="btn-group">
+       <div class="btn-group" id="multilayer">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-         Cr
+         placeholder
          <span class="caret">
          </span>
         </button>
         <ul class="dropdown-menu" role="menu">
-         <li>
-          <a href="#" onclick="material_selected(event)">
-           Cr
-          </a>
-         </li>
-         <li>
-          <a href="#" onclick="material_selected(event)">
-           Fe
-          </a>
-         </li>
-         <li>
-          <a href="#" onclick="material_selected(event)">
-           Ni
-          </a>
-         </li>
-        </ul>
-       </div>
-      </td>
-      <td>
-       <input class="form-control" type="text" />
-      </td>
-      <td>
-       <input class="form-control" type="text" />
-      </td>
-      <td>
-       <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-        </span>
-        Add
-       </button>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <input class="form-control" type="text" />
-      </td>
-      <td>
-       <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-         Cr
-         <span class="caret">
-         </span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-         <li>
-          <a href="#" onclick="material_selected(event)">
-           Cr
-          </a>
-         </li>
-         <li>
-          <a href="#" onclick="material_selected(event)">
-           Fe
-          </a>
-         </li>
-         <li>
-          <a href="#" onclick="material_selected(event)">
-           Ni
-          </a>
-         </li>
         </ul>
        </div>
       </td>
@@ -439,7 +229,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
     </div>
     Attenuators
    </legend>
-   <table class="table table-bordered table-condensed">
+   <table class="table table-bordered table-condensed" id="attenuators_table">
     <thead>
      <tr>
       <th>
@@ -474,12 +264,12 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         </button>
         <ul class="dropdown-menu" role="menu">
          <li>
-          <a href="#">
+          <a href="#" onclick="filter_selected(event)">
            Filter
           </a>
          </li>
          <li>
-          <a href="#">
+          <a href="#" onclick="filter_selected(event)">
            Beam Filter
           </a>
          </li>
@@ -487,104 +277,24 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
        </div>
       </td>
       <td>
-       <div class="btn-group">
+       <div class="btn-group" id="attenuators">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-         Cr
+         placeholder
          <span class="caret">
          </span>
         </button>
         <ul class="dropdown-menu" role="menu">
-         <li>
-          <a href="#">
-           Cr
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           Fe
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           Ni
-          </a>
-         </li>
         </ul>
        </div>
       </td>
       <td>
-       <input class="form-control" type="text" />
+       <input class="form-control" type="text"/>
       </td>
       <td>
-       <input class="form-control" type="text" />
+       <input class="form-control" type="text"/>
       </td>
       <td>
-       <input class="form-control" type="text" />
-      </td>
-      <td>
-       <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-        </span>
-        Add
-       </button>
-      </td>
-     </tr>
-     <tr>
-      <td>
-       <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-         Filter
-         <span class="caret">
-         </span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-         <li>
-          <a href="#">
-           Filter
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           Beam Filter
-          </a>
-         </li>
-        </ul>
-       </div>
-      </td>
-      <td>
-       <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-         Cr
-         <span class="caret">
-         </span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-         <li>
-          <a href="#">
-           Cr
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           Fe
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           Ni
-          </a>
-         </li>
-        </ul>
-       </div>
-      </td>
-      <td>
-       <input class="form-control" type="text" />
-      </td>
-      <td>
-       <input class="form-control" type="text" />
-      </td>
-      <td>
-       <input class="form-control" type="text" />
+       <input class="form-control" type="text" value='1'/>
       </td>
       <td>
        <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
@@ -603,7 +313,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
     </div>
     Detector
    </legend>
-   <table class="table table-bordered table-condensed">
+   <table class="table table-bordered table-condensed" id="detector_table">
     <thead>
      <tr>
       <th>
@@ -634,28 +344,13 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
     <tbody>
      <tr>
       <td>
-       <div class="btn-group">
+       <div class="btn-group" id="detector">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-         Cr
+         placeholder
          <span class="caret">
          </span>
         </button>
         <ul class="dropdown-menu" role="menu">
-         <li>
-          <a href="#">
-           Cr
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           Fe
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           Ni
-          </a>
-         </li>
         </ul>
        </div>
       </td>
@@ -674,9 +369,52 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
      </tr>
     </tbody>
    </table>
-   <button class="btn btn-primary btn-lg">
+   <button class="btn btn-primary btn-lg" onclick="submit();">
     Submit
    </button>
+   <hr>
+   <pre id="result"></pre>
+  </div>
+  <div class="modal fade" id="material_modal" tabindex="-1" role="dialog">
+   <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">
+        &times;
+       </span>
+      </button>
+      <h4 class="modal-title">
+       New material
+      </h4>
+     </div>
+     <div class="modal-body">
+      <form class="form-horizontal">
+       <fieldset>
+        <div class="form-group">
+         <label class="col-md-4 control-label" for="material_name">
+          Material name
+         </label>
+         <div class="col-md-5">
+          <div class="input-group">
+           <input id="material_modal_name" name="material_name" class="form-control" type="text" />
+          </div>
+         </div>
+        </div>
+       </fieldset>
+      </form>
+     </div>
+     <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">
+       Cancel
+      </button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" id="material_modal_ok">
+       OK
+      </button>
+     </div>
+    </div>
+   </div>
   </div>
  </body>
 </html>
+
