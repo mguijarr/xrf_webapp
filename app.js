@@ -23,6 +23,11 @@ $(function() {
     
 
   /*
+     required to initialize tooltips
+  */
+  $('[data-toggle="tooltip"]').tooltip();
+ 
+  /*
     add material when clicking 'ok' in modal dialog
   */
   $("#material_modal_ok").click(function() {
