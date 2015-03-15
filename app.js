@@ -6,7 +6,15 @@ $(function() {
   /*
     TODO: add default materials
   */
-  add_material('Air', ['C1', 'N1', 'O1', 'Ar1', 'Kr1'], [0.000124, 0.75527, 0.23178, 0.012827, 3.2e-6],0.0012048,1); 
+  add_material('Air', ['C', 'N', 'O', 'Ar', 'Kr'], [0.000124, 0.75527, 0.23178, 0.012827, 3.2e-6], 0.0012048, 1); 
+  add_material('Beryllium', ['Be'], [1.0], 1.848, 1); 
+  add_material('Germanium', ['Ge'], [1.0], 5.323, 1); 
+  add_material('Gold', ['Au'], [1.0], 19.37, 1); 
+  add_material('Kapton', ['C', 'N', 'O'], [0.628772, 0.066659, 0.304569], 1.42, 1); 
+  add_material('Mylar', ['H', 'C', 'O'], [0.0419590, 0.625017, 0.333025], 1.40, 1); 
+  add_material('Silicon', ['Si'], [1.0], 2.33, 1); 
+  add_material('Teflon', ['C', 'F'], [0.240183, 0.759817], 2.2, 1); 
+  /* add_material('Water', ['H2O1'], [1.0], 1.0, 1); */
 });
 
 function add_material(name, compounds_list, mass_list, default_density, default_thickness) {
@@ -171,12 +179,30 @@ function get_detector() {
     return detector;
 };
 
+function get_peaks() {
+    var peaks = [];
+
+    $("#peaks_table tbody tr").each(function() {
+      var peak = {};
+      var input_cols = $(this).find("input");
+      /*var btns = $(this).find("button");*/
+      peak.element = $(input_cols[0]).val();
+      peak.family = $(input_cols[1]).val();
+      peak.layer = $(input_cols[2]).val();
+      peaks.push(peak);
+    });
+
+    return peaks;
+};
+
 function submit() {
     user_input = {
       "materials": get_materials(),
       "attenuators": get_attenuators(),
       "detector": get_detector(),
       "multilayer": get_multilayer(),
+      "peaks": get_peaks(),
+      "beam_energy": $("#beam_energy").val(),
       "incoming_angle": $("#incoming_angle").val(),
       "outgoing_angle": $("#outgoing_angle").val()
     };

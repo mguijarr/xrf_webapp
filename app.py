@@ -5,6 +5,7 @@ import bottle
 import socket
 #import logging
 import json
+import helper
 
 # patch socket module;
 # by default bottle doesn't set address as reusable
@@ -28,9 +29,15 @@ def serve_static_file(url):
 def do_calculation():
     user_input = json.load(bottle.request.body)
 
-    print "received:", user_input
-
-    return { "text": "The answer is 42." }
+    print("received:", user_input)
+    # we have received attenuators, peaks, beam_energy,
+    # multilayer, materials, detector, incoming_angle, outgoing_angle
+    text = "The answer is 42."
+    try:
+        text = helper.getMultilayerFluorescence(user_input)
+    except:
+        text = ("ERROR: %s" % sys.exc_info()[1])
+    return { "text": text }
 
 def serve_forever(port=None):
     bottle.run(host="0.0.0.0", port=port)
