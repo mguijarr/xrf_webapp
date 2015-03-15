@@ -1,4 +1,30 @@
 $(function() {
+  /*
+    for the periodic table of elements
+  */
+   $('li[class^="type-"]').mouseover(function(){
+      var currentClass = $(this).attr('class').split(' ')[0];
+      if(currentClass != 'empty'){
+      	$('.main > li').addClass('deactivate');
+      	$('.' + currentClass).removeClass('deactivate');
+      }
+    });
+   
+   $('li[class^="cat-"]').mouseover(function(){
+      var currentClass = $(this).attr('class').split(' ')[0];
+      	$('.main > li').addClass('deactivate');
+      	$('.' + currentClass).removeClass('deactivate');
+    }); 
+    
+    $('.main > li').mouseout(function(){
+      var currentClass = $(this).attr('class').split(' ')[0];
+       $('.main > li').removeClass('deactivate');
+    }); 
+    
+
+  /*
+    add material when clicking 'ok' in modal dialog
+  */
   $("#material_modal_ok").click(function() {
     add_material($("#material_modal_name").val());
   }); 
