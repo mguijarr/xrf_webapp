@@ -22,6 +22,13 @@ $(function() {
     });
 
 
+    $('.main > li').click(function() {
+        var element = $.trim($(this).clone().children().remove().end().text());
+        var new_peaks_table_row = $($("#peaks_table tr")[1]).clone();
+        $("#peaks_table tbody").append(new_peaks_table_row);
+        $(new_peaks_table_row.find("input")[0]).val(element);
+    });
+
     /*
        required to initialize tooltips
     */
