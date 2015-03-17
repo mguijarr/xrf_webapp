@@ -195,13 +195,15 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
      </span>
     </div>
     Matrix Multilayer definition
+       <button type="button" class="btn btn-default btn-md" onclick="add_layer(event)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        Add
+       </button>
    </legend>
    <table class="table table-bordered table-condensed" id="multilayer_table">
     <thead>
      <tr>
-      <th>
-       Name
-      </th>
       <th>
        Material
       </th>
@@ -220,9 +222,6 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
     <tbody>
      <tr>
       <td>
-       <input class="form-control" type="text" />
-      </td>
-      <td>
        <div class="btn-group" id="multilayer">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
          placeholder
@@ -240,12 +239,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
        <input class="form-control" type="text" />
       </td>
       <td>
-       <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-        </span>
-        Add
-       </button>
-       <button type="button" class="btn btn-default btn-md" onclick="del_row(event)">
+       <button type="button" class="btn btn-default btn-md" onclick="del_layer_row(event)">
         <span class="glyphicon glyphicon-minus" aria-hidden="true">
         </span>
         Remove
@@ -259,14 +253,16 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
      <span class="glyphicon glyphicon-pencil" aria-hidden="true">
      </span>
     </div>
-    Attenuators
+    Beam Filters
+       <button type="button" class="btn btn-default btn-md" onclick="add_beam_filter(event)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        Add
+       </button>
    </legend>
-   <table class="table table-bordered table-condensed" id="attenuators_table">
+   <table class="table table-bordered table-condensed" id="beam_filters_table">
     <thead>
      <tr>
-      <th>
-       Type
-      </th>
       <th>
        Material
       </th>
@@ -286,28 +282,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
      </tr>
     </thead>
     <tbody>
-     <tr>
-      <td>
-       <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-         Filter
-         <span class="caret">
-         </span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-         <li>
-          <a href="#" onclick="filter_selected(event)">
-           Filter
-          </a>
-         </li>
-         <li>
-          <a href="#" onclick="filter_selected(event)">
-           Beam Filter
-          </a>
-         </li>
-        </ul>
-       </div>
-      </td>
+     <tr class="hidden">
       <td>
        <div class="btn-group" id="attenuators">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -329,11 +304,71 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
        <input class="form-control" type="text" value="1" />
       </td>
       <td>
-       <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
+       <button type="button" class="btn btn-default btn-md" onclick="del_row(event)">
+        <span class="glyphicon glyphicon-minus" aria-hidden="true">
+        </span>
+        Remove
+       </button>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <legend>
+    <div style="display: inline-block;">
+     <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+     </span>
+    </div>
+      Filters
+       <button type="button" class="btn btn-default btn-md" onclick="add_filter(event)">
         <span class="glyphicon glyphicon-plus" aria-hidden="true">
         </span>
         Add
        </button>
+   </legend>
+   <table class="table table-bordered table-condensed" id="filters_table">
+    <thead>
+     <tr>
+      <th>
+       Material
+      </th>
+      <th>
+       Density (g/cm
+       <sup>
+        3
+       </sup>
+       )
+      </th>
+      <th>
+       Thickness (cm)
+      </th>
+      <th>
+       Funny factor
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr class="hidden">
+      <td>
+       <div class="btn-group" id="attenuators">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         placeholder
+         <span class="caret">
+         </span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+        </ul>
+       </div>
+      </td>
+      <td>
+       <input class="form-control" type="text" />
+      </td>
+      <td>
+       <input class="form-control" type="text" />
+      </td>
+      <td>
+       <input class="form-control" type="text" value="1" />
+      </td>
+      <td>
        <button type="button" class="btn btn-default btn-md" onclick="del_row(event)">
         <span class="glyphicon glyphicon-minus" aria-hidden="true">
         </span>
@@ -349,6 +384,11 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
      </span>
     </div>
     Detector
+       <button type="button" class="btn btn-default btn-md" onclick="add_detector(event)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        Add
+       </button>
    </legend>
    <table class="table table-bordered table-condensed" id="detector_table">
     <thead>
@@ -379,7 +419,7 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
      </tr>
     </thead>
     <tbody>
-     <tr>
+     <tr class="hidden">
       <td>
        <div class="btn-group" id="detector">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -402,6 +442,12 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
       </td>
       <td>
        <input class="form-control" type="text" />
+      </td>
+      <td> <button type="button" class="btn btn-default btn-md" onclick="del_row(event)">
+        <span class="glyphicon glyphicon-minus" aria-hidden="true">
+        </span>
+        Remove
+       </button> 
       </td>
      </tr>
     </tbody>
@@ -1106,22 +1152,65 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
       </tr>
      </thead>
      <tbody>
-      <tr>
+      <tr class="hidden">
        <td>
         <input class="form-control" type="text" />
+       </td>
+       <td>
+               <div class="btn-group" id="peak_family">
+         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+         K 
+          <span class="caret">
+          </span>
+         </button>
+         <ul class="dropdown-menu" role="menu">
+         <li>
+          <a href="#">
+            K 
+          </a>
+         </li>
+         <li>
+          <a href="#">
+            Ka
+          </a>
+         </li>
+         <li>
+          <a href="#">
+            Kb 
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           L
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           L1
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           L2
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           L3
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           M
+          </a>
+         </li>
+         </ul>
+        </div>  
        </td>
        <td>
         <input class="form-control" type="text" />
        </td>
        <td>
-        <input class="form-control" type="text" />
-       </td>
-       <td>
-        <button type="button" class="btn btn-default btn-md" onclick="add_row(event)">
-         <span class="glyphicon glyphicon-plus" aria-hidden="true">
-         </span>
-         Add
-        </button>
        <button type="button" class="btn btn-default btn-md" onclick="del_row(event)">
         <span class="glyphicon glyphicon-minus" aria-hidden="true">
         </span>

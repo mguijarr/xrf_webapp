@@ -1,3 +1,4 @@
+import sys
 from fisx import Elements
 from fisx import Material
 from fisx import Detector

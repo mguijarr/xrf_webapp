@@ -25,6 +25,7 @@ $(function() {
     $('.main > li').click(function() {
         var element = $.trim($(this).clone().children().remove().end().text());
         var new_peaks_table_row = $($("#peaks_table tr")[1]).clone();
+        new_peaks_table_row.removeClass("hidden");
         $("#peaks_table tbody").append(new_peaks_table_row);
         $(new_peaks_table_row.find("input")[0]).val(element);
     });
@@ -144,6 +145,27 @@ function material_selected(e) {
     var btn = $(ref).parent().parent().prev();
     var current_material = $.trim($(btn).text());
     $(btn).html($(btn).html().replace(current_material, selected_material));
+
+    var density = 1;
+    var thickness;
+    var materials = get_materials();
+    for (var i=0; i<materials.length; i++) {
+      if (materials[i].name == selected_material) {
+        density = materials[i].density;
+        if (density == "") { density = "1" };
+        thickness = materials[i].thickness;
+        if (thickness == "") { thickness = "1" };
+        break;
+      }
+    }
+
+    $($(btn).parent().parent().parent().find("input")[0]).val(density);
+    var thickness_input = $($(btn).parent().parent().parent().find("input")[1]);
+    var thickness_current_value = $.trim(thickness_input.val());
+    if ((thickness_current_value == "") || (thickness_current_value=="1")) {
+      thickness_input.val(thickness);
+    }
+    
     e.preventDefault();
 };
 
@@ -151,15 +173,48 @@ function add_row(e) {
     var add_btn = e.target;
     var table_row = $(add_btn).parent().parent();
     var new_table_row = table_row.clone();
+    new_table_row.removeClass("hidden");
     table_row.parent().append(new_table_row);
 };
 
 function del_row(e) {
     var btn = e.target;
     var table_row = $(btn).parent().parent();
+    $(table_row).remove();
+};
+
+function del_layer_row(e) {
+    var btn = e.target;
+    var table_row = $(btn).parent().parent();
     if ($(table_row).parent().children().length > 1) {
         $(table_row).remove();
     }
+};
+
+function add_detector() {
+  if  ($("#detector_table tbody tr").length == 1) {
+  var new_row = $($("#detector_table tbody tr")[0]).clone();
+  new_row.removeClass("hidden");
+  $("#detector_table tbody").append(new_row);
+  }
+};
+
+function add_layer(e) {
+  var new_row = $($("#multilayer_table tbody tr")[0]).clone();
+  new_row.removeClass("hidden");
+  $("#multilayer_table tbody").append(new_row);
+};
+
+function add_beam_filter(e) {
+  var new_row = $($("#beam_filters_table tbody tr")[0]).clone();
+  new_row.removeClass("hidden");
+  $("#beam_filters_table tbody").append(new_row);
+};
+
+function add_filter(e) {
+  var new_row = $($("#filters_table tbody tr")[0]).clone();
+  new_row.removeClass("hidden");
+  $("#filters_table tbody").append(new_row);
 };
 
 function filter_selected(e) {
@@ -177,15 +232,15 @@ function get_materials() {
         var i = 0;
         $(this).find("tbody input").each(function() {
             if (i % 2 == 0) {
-                material.compounds.push($(this).val());
+                material.compounds.push($.trim($(this).val()));
             } else {
-                material.mass.push($(this).val());
+                material.mass.push($.trim($(this).val()));
             }
             i++;
         });
         var inputs = $(this).find("fieldset input");
-        material.density = $(inputs[0]).val();
-        material.thickness = $(inputs[1]).val();
+        material.density = $.trim($(inputs[0]).val());
+        material.thickness = $.trim($(inputs[1]).val());
         materials.push(material);
     });
 
@@ -196,6 +251,7 @@ function get_multilayer() {
     var multilayer = [];
 
     $("#multilayer_table tbody tr").each(function() {
+        if (! $(this).hasClass("hidden")) {
         var layer = {};
         var input_cols = $(this).find("input");
         layer.name = $(input_cols[0]).val();
@@ -203,6 +259,7 @@ function get_multilayer() {
         layer.thickness = $(input_cols[2]).val();
         layer.material = $.trim($($(this).find("button")[0]).text());
         multilayer.push(layer);
+        }
     });
 
     return multilayer;
@@ -211,17 +268,34 @@ function get_multilayer() {
 function get_attenuators() {
     var attenuators = [];
 
-    $("#attenuators_table tbody tr").each(function() {
+    $("#beam_filters_table tbody tr").each(function() {
+        if (! $(this).hasClass("hidden")) {
         var att = {};
         var input_cols = $(this).find("input");
         var btns = $(this).find("button");
-        att.type = $.trim($(btns[0]).text());
+        att.type = "Beam Filter"; //$.trim($(btns[0]).text());
         att.density = $(input_cols[0]).val();
         att.thickness = $(input_cols[1]).val();
         att.funny = $(input_cols[2]).val();
         att.material = $.trim($(btns[1]).text());
         attenuators.push(att);
+        }
     });
+ 
+     $("#filters_table tbody tr").each(function() {
+        if (! $(this).hasClass("hidden")) {
+        var att = {};
+        var input_cols = $(this).find("input");
+        var btns = $(this).find("button");
+        att.type = "Filter"; //$.trim($(btns[0]).text());
+        att.density = $(input_cols[0]).val();
+        att.thickness = $(input_cols[1]).val();
+        att.funny = $(input_cols[2]).val();
+        att.material = $.trim($(btns[1]).text());
+        attenuators.push(att);
+        }
+    }); 
+
 
     return attenuators;
 };
@@ -230,6 +304,7 @@ function get_detector() {
     var detector = {};
 
     $("#detector_table tbody tr").each(function() {
+        if (! $(this).hasClass("hidden")) {
         var input_cols = $(this).find("input");
         var btns = $(this).find("button");
         detector.material = $.trim($(btns[0]).text());
@@ -237,6 +312,7 @@ function get_detector() {
         detector.thickness = $(input_cols[1]).val();
         detector.area = $(input_cols[2]).val();
         detector.distance = $(input_cols[3]).val();
+        }
     });
 
     return detector;
@@ -246,13 +322,14 @@ function get_peaks() {
     var peaks = [];
 
     $("#peaks_table tbody tr").each(function() {
+        if (! $(this).hasClass("hidden")) {
         var peak = {};
         var input_cols = $(this).find("input");
-        /*var btns = $(this).find("button");*/
         peak.element = $(input_cols[0]).val();
         peak.family = $(input_cols[1]).val();
         peak.layer = $(input_cols[2]).val();
         peaks.push(peak);
+        }
     });
 
     return peaks;
