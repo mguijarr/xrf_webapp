@@ -147,6 +147,14 @@ function add_row(e) {
     table_row.parent().append(new_table_row);
 };
 
+function del_row(e) {
+    var btn = e.target;
+    var table_row = $(btn).parent().parent();
+    if ($(table_row).parent().children().length > 1) {
+        $(table_row).remove();
+    }
+};
+
 function filter_selected(e) {
     material_selected(e);
 };
