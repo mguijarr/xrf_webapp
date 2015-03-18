@@ -254,9 +254,8 @@ function get_multilayer() {
         if (! $(this).hasClass("hidden")) {
         var layer = {};
         var input_cols = $(this).find("input");
-        layer.name = $(input_cols[0]).val();
-        layer.density = $(input_cols[1]).val();
-        layer.thickness = $(input_cols[2]).val();
+        layer.density = $(input_cols[0]).val();
+        layer.thickness = $(input_cols[1]).val();
         layer.material = $.trim($($(this).find("button")[0]).text());
         multilayer.push(layer);
         }
@@ -325,9 +324,10 @@ function get_peaks() {
         if (! $(this).hasClass("hidden")) {
         var peak = {};
         var input_cols = $(this).find("input");
+        var btns = $(this).find("button");
         peak.element = $(input_cols[0]).val();
-        peak.family = $(input_cols[1]).val();
-        peak.layer = $(input_cols[2]).val();
+        peak.family = $.trim($(btns[0]).text());
+        peak.layer = $(input_cols[1]).val();
         peaks.push(peak);
         }
     });

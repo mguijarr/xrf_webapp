@@ -80,7 +80,7 @@ def _getFisxMaterials(webConfiguration, elementsInstance=None):
                     except:
                         text = "Error defining material %s" % \
                                         materialName
-                        text += "\n" + sys.exc_info()[1]
+                        text += "\n" + "%s" % (sys.exc_info()[1])
                         raise TypeError(text)
                     processedMaterialList.append(materialName)
             lastProcessedMaterial = materialName
@@ -148,7 +148,7 @@ def _getSampleParameters(webConfiguration):
             multilayerSample.append([material, density, thickness, funny])
         except:
             text = "Error defining sample %s" % name
-            text += "\n" + sys.exc_info()[1]
+            text += "\n" + ("%s" % sys.exc_info()[1])
             raise ValueError(text)
         counter += 1
     return multilayerSample
@@ -161,14 +161,18 @@ def _getDetector(webConfiguration):
     Material = "material"
     Area = "area"
     Distance = "distance"
-    material = webConfiguration["detector"][Material]
-    density = float(webConfiguration["detector"][Density])
-    thickness = float(webConfiguration["detector"][Thickness])
-    area = float(webConfiguration["detector"][Area])
-    distance = float(webConfiguration["detector"][Distance])
-    detectorInstance = Detector(material, density, thickness)
-    detectorInstance.setActiveArea(area)
-    detectorInstance.setDistance(distance)
+    material = webConfiguration["detector"].get(Material, None)
+    if material is None:
+        # No detector
+        return None
+    else:
+        density = float(webConfiguration["detector"][Density])
+        thickness = float(webConfiguration["detector"][Thickness])
+        area = float(webConfiguration["detector"][Area])
+        distance = float(webConfiguration["detector"][Distance])
+        detectorInstance = Detector(material, density, thickness)
+        detectorInstance.setActiveArea(area)
+        detectorInstance.setDistance(distance)
     return detectorInstance
 
 def getMultilayerFluorescence(webConfiguration, elementsInstance=None):
@@ -224,8 +228,11 @@ def getMultilayerFluorescence(webConfiguration, elementsInstance=None):
     if DEBUG:
         print("getting detector instance")
     detectorInstance = _getDetector(webConfiguration)
-    xrf.setDetector(detectorInstance)
-    useGeometricEfficiency = 1
+    if detectorInstance is not None:
+        xrf.setDetector(detectorInstance)
+        useGeometricEfficiency = 1
+    else:
+        useGeometricEfficiency = 0
 
     # the pics to look for
     elementNames = elementsInstance.getElementNames()
