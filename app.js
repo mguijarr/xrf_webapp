@@ -139,6 +139,15 @@ function show_add_material(e) {
     $("#material_modal").modal("show");
 };
 
+function peak_selected(e) {
+    var ref = e.target;
+    var selected_peak = $(ref).html();
+    var btn = $(ref).parent().parent().prev();
+    var current_peak = $.trim($(btn).text());
+    $(btn).html($(btn).html().replace(current_peak, selected_peak));
+    e.preventDefault();
+};
+
 function material_selected(e) {
     var ref = e.target;
     var selected_material = $(ref).html();
